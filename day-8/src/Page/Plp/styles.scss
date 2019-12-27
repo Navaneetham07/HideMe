@@ -1,0 +1,22 @@
+.album-fav-count {
+  color: #000;
+}
+.album-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 1000px;
+}
+.album {
+  width: 300px;
+  margin: 10px;
+}
+.album-img {
+  width: 300px;
+}
+.album-title {
+  min-height: 40px;
+}
+.add-fav-container {
+  margin: 10px;
+}
