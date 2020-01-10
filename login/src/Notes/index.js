@@ -12,10 +12,9 @@ class Notes extends React.Component {
     }
     this.addNote=this.addNote.bind(this);
     this.gotoLogin=this.gotoLogin.bind(this);
-    this.edit=this.edit.bind(this);
+    this.remove=this.remove.bind(this);
 }
 addNote(event){
-    console.log("Working");
     if(this.theTitle.value !==""){
         var newItem={
             id:this.state.id+1,
@@ -23,11 +22,8 @@ addNote(event){
             note:this.theNote.value
         };
     }
-
-        array=array.concat(newItem)
-        
+    array=array.concat(newItem)
     localStorage.setItem('data',JSON.stringify(array))
-    
     this.setState((prevState)=>{
         return{
             items:prevState.items.concat(newItem)
@@ -46,9 +42,12 @@ gotoLogin(event){
     event.preventDefault();
 }
 
-edit(event){
-    console.log(array[0].title)
-}
+remove(index) {
+    const items = this.state.items.filter((item, itemIndex) => {
+      return itemIndex !== index
+    })
+    this.setState({ items })
+  }
   render() {
     return (
           <div>
@@ -59,7 +58,9 @@ edit(event){
         </header>
         <div className="main-content">
         <ul>
-            {this.state.items.map( (val)=> <li>TITLE : {val.title}<p></p>MESSAGE : {val.note}<input type="submit" className='noteBox' id='center' value='Edit' onClick={this.edit}/></li>)}
+        {this.state.items.map( (val,index)=> <li>TITLE : {val.title}<p></p>MESSAGE : {val.note}
+            <input type="submit" className='noteBox' id='center' value='Delete' onClick={e=>this.remove(index)}/>
+            </li>)}
         </ul>
         </div>
         <div className='container1'>

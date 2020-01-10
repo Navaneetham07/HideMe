@@ -2,17 +2,17 @@ import React from "react";
 import list from '../userDetails'
 import Question from "../components/AnswerMe";
 import "../assets/style.css"
-var firstname=''
-var lastname=''
+var question=''
+var answer=''
 class NameForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        pass:'',
+        entry:'',
         value: '',
         count:0,
         count1:0,
-        num:0};
+        num:0 };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCheck=this.handleCheck.bind(this);
@@ -24,12 +24,12 @@ class NameForm extends React.Component {
       count:0,count1:0});
     }
     handleCheck(event){
-      this.setState({pass: event.target.value,
+      this.setState({entry: event.target.value,
         });
         
     }
     check(event){
-      if(this.state.pass === lastname){
+      if(this.state.entry === answer){
         alert('Welcome');
         window.location.href='/notes';
       }
@@ -49,8 +49,8 @@ class NameForm extends React.Component {
      list.map((item,index)=>{
        if(item.id === this.state.value){
          const c=(Math.floor(Math.random()*10))%3;
-        firstname=item.question[c].q
-        lastname=item.question[c].a
+         question=item.question[c].q
+        answer=item.question[c].a
             this.setState({
               count:this.state.count+1
             });
@@ -88,7 +88,7 @@ class NameForm extends React.Component {
           <Question userName={this.state.value} password={this.password}/>):null}
         {this.state.num ===1 ? (
           <form onSubmit={this.check} className="form-user">
-            <input type="text" value={this.state.pass} onChange={this.handleCheck} placeholder={firstname} className='questionBox' required/>
+            <input type="text" value={this.state.pass} onChange={this.handleCheck} placeholder={question} className='questionBox' required/>
           <input type="submit" value="check me" className='playBtn'/>
         </form>
         ):null}
