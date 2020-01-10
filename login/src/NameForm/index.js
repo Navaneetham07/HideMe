@@ -88,7 +88,7 @@ class NameForm extends React.Component {
           <Question userName={this.state.value} password={this.password}/>):null}
         {this.state.num ===1 ? (
           <form onSubmit={this.check} className="form-user">
-            <input type="text" value={this.state.pass} onChange={this.handleCheck} placeholder={question} className='questionBox' required/>
+            <textarea value={this.state.pass} onChange={this.handleCheck} placeholder={question} className='questionBox' required/>
           <input type="submit" value="check me" className='playBtn'/>
         </form>
         ):null}
